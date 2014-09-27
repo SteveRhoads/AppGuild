@@ -16,7 +16,12 @@ Ext.define('CustomApp', {
         var addNewConfig = {
             xtype: 'rallyaddnew',
             recordTypes: ['User Story','Defect'],
-            ignoredRequiredFields: ['Name','ScheduleState','Project']
+            ignoredRequiredFields: ['Name','ScheduleState','Project'],
+            showAddWithDetails: false,
+            listeners: {
+                beforecreate: this._onBeforeCreate,
+                scope: this
+            }
         };
         this.addNew = this.add(addNewConfig);
 
@@ -37,5 +42,9 @@ Ext.define('CustomApp', {
             }
         };
         this.cardBoard.refresh(config);
+    },
+    _onBeforeCreate: function(addNewComponent, record){
+        // record is the new item that is about to be created
+        record.set('Iteration', this.iterationCombobox.getValue());
     }
 });

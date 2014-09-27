@@ -1,3 +1,7 @@
 .app {
      /* Add app styles here */
+    margin: 10px;
+}
+.app .cardboard {
+    border: 2px solid green;
 }
